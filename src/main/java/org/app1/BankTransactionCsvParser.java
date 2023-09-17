@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankTransactionCsvParser {
+public class BankTransactionCsvParser implements IBankTransactionParser{
 
     final static DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public  BankTransaction parseFromCSV(String line){

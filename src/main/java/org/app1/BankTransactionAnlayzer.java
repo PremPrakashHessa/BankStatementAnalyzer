@@ -13,26 +13,16 @@ public class BankTransactionAnlayzer {
     static final String RESOURCES = "src/main/resources/";
 
     //Parsing delegated to BankTransactionCsvParser
-    static final BankTransactionCsvParser csvParser = new BankTransactionCsvParser();
 
-    public static void main(String[] args) throws IOException {
-
-        Path path = Path.of(RESOURCES + args[0]);
+    static void analyze(String fileName , IBankTransactionParser bankTransactionParser) throws IOException {
+        final Path path = Path.of(RESOURCES + fileName);
         List<String> lines = Files.readAllLines(path);
+        List<BankTransaction> transactions = bankTransactionParser.parseLinesFromCSV(lines);
 
-
-        List<BankTransaction> transactions = csvParser.parseLinesFromCSV(lines);
-
-        //all four queries responsible are delegated into BankTransactionProcessor
-        BankTransactionProcessor processor = new BankTransactionProcessor(transactions);
-
-        //reporting back functionality
-        //cohesiveness of BankTransactionAnalyzer -- parse & report
-
-        collectSummary(processor);
-
-
+        BankTransactionProcessor txProcessor = new BankTransactionProcessor(transactions);
+        collectSummary(txProcessor);
     }
+
 
     private static void collectSummary(final BankTransactionProcessor bankTxProcessor) {
         System.out.println("The total for all transactions is "
