@@ -1,6 +1,4 @@
 
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ]
 -src/main/java/org/domain/BankTransaction.java,b\4\b453adbdcfd1d1c4ee1e9f4c38ae90be28f43248
 ^
