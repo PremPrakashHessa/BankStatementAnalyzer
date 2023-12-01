@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
 
 public class BankTransactionProcessor {
 
@@ -36,8 +38,21 @@ public class BankTransactionProcessor {
     }
 
 
+    public double calculateWithinDates(LocalDate startDate , LocalDate endDate , BinaryOperator<Double> comparisonOperator){
+        Optional<Double> amount = transactions.stream().
+                filter(tx -> {
+                    LocalDate date = tx.getDate();
+                    return ((date.isEqual(startDate) || date.isAfter(startDate)) &&
+                            date.isEqual(endDate) || date.isBefore(endDate));
+                }).
+                map(BankTransaction::getAmount).
+                reduce(comparisonOperator);
+
+        return amount.get();
+    }
+
     public double minimumWithinDates(LocalDate startDate, LocalDate endDate) {
-        double minimumAmount = Double.MAX_VALUE;
+        /*double minimumAmount = Double.MAX_VALUE;
 
         for(BankTransaction transaction : transactions){
             if( (transaction.getDate().isEqual(startDate) || transaction.getDate().isAfter(startDate)) &&
@@ -46,11 +61,12 @@ public class BankTransactionProcessor {
                 if(minimumAmount > transaction.getAmount()) minimumAmount = transaction.getAmount();
             }
         }
-        return minimumAmount;
+        return minimumAmount;*/
+        return calculateWithinDates(startDate, endDate, Double::min);
     }
 
     public double maximumWithinDates(LocalDate startDate, LocalDate endDate) {
-        double maximumAmount = Double.MIN_VALUE;
+        /*double maximumAmount = Double.MIN_VALUE;
 
         for(BankTransaction transaction : transactions){
             if( (transaction.getDate().isEqual(startDate) || transaction.getDate().isAfter(startDate)) &&
@@ -59,6 +75,8 @@ public class BankTransactionProcessor {
                 if(maximumAmount < transaction.getAmount()) maximumAmount = transaction.getAmount();
             }
         }
-        return maximumAmount;
+        return maximumAmount;*/
+
+        return calculateWithinDates(startDate, endDate, Double::max);
     }
 }
