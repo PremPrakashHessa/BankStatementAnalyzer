@@ -5,6 +5,8 @@ import org.domain.BankTransaction;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
@@ -36,5 +38,13 @@ public class BankTransactionAnlayzer {
         System.out.println("The total salary received is "
                 +
                 bankTxProcessor.calculateTotalForCategory("Salary"));
+
+        System.out.println("The minimum amount for transactions between 30th January 2017 and 5th Feb 2017 is " +
+                bankTxProcessor.minimumWithinDates(LocalDate.of(2017,1,30) ,
+                        LocalDate.of(2017,2,5)));
+        System.out.println("The maximum amount for transactions between 30th January 2017 and 5th Feb 2017 is " +
+                bankTxProcessor.maximumWithinDates(LocalDate.of(2017,1,30) ,
+                        LocalDate.of(2017,2,5)));
+
     }
 }
