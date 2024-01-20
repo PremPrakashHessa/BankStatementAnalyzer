@@ -79,4 +79,21 @@ public class BankTransactionProcessor {
 
         return calculateWithinDates(startDate, endDate, Double::max);
     }
+
+    /*
+    adding this method to extend the functionality of Bank Transaction Analyzer to be able to find transactions
+        using various criteria
+        DESIGNING USING OPEN/CLOSED PRINCIPLE
+     */
+
+    List <BankTransaction> findTransactions(BankTransactionFilter transactionFilter){
+        List<BankTransaction> results = new ArrayList<>();
+        for (BankTransaction transaction: transactions) {
+            if(transactionFilter.test())
+                results.add(transaction);
+        }
+
+        return results;
+    }
+
 }
