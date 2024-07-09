@@ -126,4 +126,13 @@
         </snapshotRepository>
     </distributionManagement>
 
+
+    <!-- gitHub scm for project release -->
+    <scm>
+        <connection>scm:git:https://github.com/PremPrakashHessa/BankStatementAnalyzer.git</connection>
+        <developerConnection>scm:git:https://github.com/PremPrakashHessa/BankStatementAnalyzer.git</developerConnection>
+        <url>https://github.com/PremPrakashHessa/BankStatementAnalyzer</url>
+    </scm>
+
+
 </project>
