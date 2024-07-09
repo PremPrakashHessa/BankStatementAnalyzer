@@ -130,7 +130,7 @@
         <connection>scm:git:https://github.com/PremPrakashHessa/BankStatementAnalyzer.git</connection>
         <developerConnection>scm:git:https://github.com/PremPrakashHessa/BankStatementAnalyzer.git</developerConnection>
         <url>https://github.com/PremPrakashHessa/BankStatementAnalyzer</url>
-      <tag>HEAD</tag>
+<!--      <tag>HEAD</tag>-->
   </scm>
 
 
